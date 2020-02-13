@@ -1,23 +1,54 @@
-// Copyright 2018 The Flutter team. All rights reserved.
-// Use of this source code is governed by a BSD-style license that can be
-// found in the LICENSE file.
-
 import 'package:flutter/material.dart';
+import 'package:splashscreen/splashscreen.dart';
 
-void main() => runApp(MyApp());
+void main(){
+  runApp(new MaterialApp(
+    home: new MyApp(),
+  ));
+}
 
-class MyApp extends StatelessWidget {
+
+class MyApp extends StatefulWidget {
+  @override
+  _MyAppState createState() => new _MyAppState();
+}
+
+class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      title: 'Welcome to Flutter',
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('Welcome to Flutter'),
-        ),
-        body: Center(
-          child: Text('Hello World'),
-        ),
+    return new SplashScreen(
+      seconds: 14,
+      navigateAfterSeconds: new AfterSplash(),
+      title: new Text('Welcome In SplashScreen',
+      style: new TextStyle(
+        fontWeight: FontWeight.bold,
+        fontSize: 20.0
+      ),),
+      image: new Image.asset('assets/Launcher/second_splash.png'),
+      backgroundColor: Colors.white,
+      styleTextUnderTheLoader: new TextStyle(),
+      photoSize: 100.0,
+      onClick: ()=>print("Flutter Egypt"),
+      loaderColor: Colors.red
+    );
+  }
+}
+
+class AfterSplash extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return new Scaffold(
+      appBar: new AppBar(
+      title: new Text("Welcome In SplashScreen Package"),
+      automaticallyImplyLeading: false
+      ),
+      body: new Center(
+        child: new Text("Done!",
+        style: new TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 30.0
+        ),),
+
       ),
     );
   }
